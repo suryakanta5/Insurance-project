@@ -27,7 +27,6 @@ node{
             The Jenkins job ${JOB_NAME} has been failed. Request you to please have a look at it immediately by clicking on the below link. 
             ${BUILD_URL}''', subject: 'Job ${JOB_NAME} ${BUILD_NUMBER} is failed', to: 'suryakanta.it2019m@gmail.com'
         }
-    }
     
     stage('Build the Application'){
         echo "Cleaning... Compiling...Testing... Packaging..."
@@ -51,7 +50,8 @@ node{
         sh "${dockerCMD} push surya556/insurance:${tagName}"
             
         }
-        
+
+    }
     stage('Configure and Deploy to the test-server'){
        ansiblePlaybook become: true, disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible-playbook.yml', vaultTmpPath: ''
         
