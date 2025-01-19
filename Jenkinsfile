@@ -60,11 +60,6 @@ ${BUILD_URL}''',
     }
 
     stage('Configure and Deploy to Test Server') {
-        ansiblePlaybook become: true, 
-                        disableHostKeyChecking: true, 
-                        installation: 'ansible', 
-                        inventory: '/etc/ansible/hosts', 
-                        playbook: 'ansible-playbook.yml', 
-                        vaultTmpPath: ''
+        ansiblePlaybook become: true, credentialsId: 'ansible', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible-playbook.yml', vaultTmpPath: ''
     }
 }
